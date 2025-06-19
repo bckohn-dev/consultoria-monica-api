@@ -1,5 +1,5 @@
 // api/imoveis.js
-res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Origin', 'https://consultoria-monica.vercel.app');
 
 export default function handler(req, res) {
   res.status(200).json([
