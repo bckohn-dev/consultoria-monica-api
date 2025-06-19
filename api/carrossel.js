@@ -1,6 +1,8 @@
 // api/carrossel.js
 import { storage } from './_firebaseAdmin.js';
 
+res.setHeader('Access-Control-Allow-Origin', '*');
+
 export default async function handler(req, res) {
   try {
     const bucket = storage.bucket();
