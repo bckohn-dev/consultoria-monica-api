@@ -1,7 +1,7 @@
 // api/carrossel.js
 import { storage } from './_firebaseAdmin.js';
 
-res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Origin', 'https://consultoria-monica.vercel.app');
 
 export default async function handler(req, res) {
   try {
