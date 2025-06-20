@@ -8,22 +8,23 @@ const {
   FIREBASE_ADMIN_CLIENT_EMAIL,
   FIREBASE_ADMIN_PRIVATE_KEY,
 } = process.env;
-const formatKey = (key) => {
-  if (key.includes('\\n')) return key.replace(/\\n/g, '\n'); // de Vercel
-  return key; // de .env.local
-};
+
+
+
+
+
 let app;
 
 if (!getApps().length) {
   console.log("🔐 Inicializando Firebase Admin...");
   console.log('🔐 Key length:', FIREBASE_ADMIN_PRIVATE_KEY?.length);
-  console.log('🔐 Key preview:', FIREBASE_ADMIN_PRIVATE_KEY?.slice(0, 80));
-
+  console.log('🔐 Key preview:', FIREBASE_ADMIN_PRIVATE_KEY?.slice(0, 30));
+    if (FIREBASE_ADMIN_PRIVATE_KEY.includes('\\n')) return FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n'); // de Vercel
   app = initializeApp({
     credential: cert({
       projectId: FIREBASE_ADMIN_PROJECT_ID,
       clientEmail: FIREBASE_ADMIN_CLIENT_EMAIL,
-      privateKey: formatKey(FIREBASE_ADMIN_PRIVATE_KEY),
+      privateKey: FIREBASE_ADMIN_PRIVATE_KEY,
     }),
     storageBucket: `${FIREBASE_ADMIN_PROJECT_ID}.appspot.com`,
   });
