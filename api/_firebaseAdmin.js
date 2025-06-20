@@ -13,7 +13,7 @@ let privateKey = FIREBASE_ADMIN_PRIVATE_KEY;
 
 // 🔄 Corrige formatação da chave privada (caso venha do Vercel com \\n)
 if (privateKey?.includes('\\n')) {
-  privateKey = privateKey.replace(/\\n/g, '\n');
+  privateKey = privateKey.replace(/\\\\n/g, '\n');
 }
 
 // 🔐 Inicialização
@@ -22,7 +22,7 @@ if (!getApps().length) {
   console.log('🔐 Key length:', privateKey?.length);
   console.log('🔐 Key preview:', privateKey?.slice(0, 50));
   console.log('🔍 Raw private key env:', JSON.stringify(FIREBASE_ADMIN_PRIVATE_KEY).slice(0, 100));
-
+  console.log('🔍 Processed key preview:', JSON.stringify(privateKey).slice(0, 100));
 
   app = initializeApp({
     credential: cert({
