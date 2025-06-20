@@ -11,15 +11,16 @@ const {
 let app;
 let privateKey = FIREBASE_ADMIN_PRIVATE_KEY;
 
+// ✅ Corrige as quebras de linha da chave se estiverem no formato Vercel
 if (privateKey?.includes('\\n')) {
-  privateKey = privateKey.replace(/\\n/g, '\n'); // Corrige o formato da Vercel
+  privateKey = privateKey.replace(/\\n/g, '\n');
 }
 
 if (!getApps().length) {
   console.log("🔐 Inicializando Firebase Admin...");
   console.log('🔐 Key length:', privateKey?.length);
-  console.log('🔐 Key preview:', privateKey?.slice(0, 30));
-
+  console.log('🔐 Key preview:', privateKey?.slice(0, 50));
+  
   app = initializeApp({
     credential: cert({
       projectId: FIREBASE_ADMIN_PROJECT_ID,
