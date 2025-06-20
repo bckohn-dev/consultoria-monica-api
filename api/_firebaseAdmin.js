@@ -11,16 +11,19 @@ const {
 let app;
 let privateKey = FIREBASE_ADMIN_PRIVATE_KEY;
 
-// ✅ Corrige as quebras de linha da chave se estiverem no formato Vercel
+// 🔄 Corrige formatação da chave privada (caso venha do Vercel com \\n)
 if (privateKey?.includes('\\n')) {
   privateKey = privateKey.replace(/\\n/g, '\n');
 }
 
+// 🔐 Inicialização
 if (!getApps().length) {
   console.log("🔐 Inicializando Firebase Admin...");
   console.log('🔐 Key length:', privateKey?.length);
   console.log('🔐 Key preview:', privateKey?.slice(0, 50));
-  
+  console.log('🔍 Raw private key env:', JSON.stringify(FIREBASE_ADMIN_PRIVATE_KEY).slice(0, 100));
+
+
   app = initializeApp({
     credential: cert({
       projectId: FIREBASE_ADMIN_PROJECT_ID,
@@ -37,6 +40,3 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 export { app, db, storage };
-
-// This module initializes Firebase Admin SDK with Firestore and Storage.
-// It uses environment variables for configuration and exports the initialized app, Firestore, and Storage instances
